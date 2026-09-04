@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "Interaction": {
+      "title": "Interaction",
+      "description": "User journal entry and multi-turn AI reflection record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the interaction"
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the authenticated owner"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the journal entry"
+        },
+        "content": {
+          "type": "string",
+          "description": "The user's journal entry text"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category tag for the reflection"
+        },
+        "mood": {
+          "type": "string",
+          "description": "Mood tag associated with the entry"
+        },
+        "summary": {
+          "type": "string",
+          "description": "AI-generated structured summary and insights"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Multi-turn chat messages between user and Gemini"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp when entry was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp when entry was last updated"
+        }
+      },
+      "required": ["userId", "title", "content", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/interactions/{interactionId}": {
+      "schema": "Interaction",
+      "description": "Owner-isolated user journal reflections and multi-turn chat sessions"
+    }
+  }
+}
